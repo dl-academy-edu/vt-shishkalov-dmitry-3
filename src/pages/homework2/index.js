@@ -14,7 +14,6 @@ function task1() {
   for (i; i <= max; i++) {
     if (i % 4) {
       console.log(i);
-      continue
     }
   }
 }
