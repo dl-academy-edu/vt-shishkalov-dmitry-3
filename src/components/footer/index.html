@@ -1,8 +1,95 @@
-<footer>
-  <div class="container">
-    <span class="title-block title-block_one">Footer</span>
-    <a href="/">Главная</a>
-    <a href="/pages/catalog">Каталог</a>
-    <a href="/pages/toys">Игрушки</a>
-  </div>
+<footer class="footer">
+  <h2 class="footer__title">Contacts</h2>
+  <p class="footer__description">Want to know more or just chat?
+    You are welcome!</p>
+  @@include('button/index.html', {
+  "class": "button_black button-message_js",
+  "class-text": "button__text_white",
+  "text": "Send message"
+  })
+  <ul class="footer__socials">
+    <li class="footer__social">
+      @@include('link/index.html', {
+      "href": "#",
+      "text": "Instagram"
+      })
+    </li>
+    <li class="footer__social">
+      @@include('link/index.html', {
+      "href": "#",
+      "text": "Vk"
+      })
+    </li>
+    <li class="footer__social">
+      @@include('link/index.html', {
+      "href": "#",
+      "text": "Telegram"
+      })
+    </li>
+    <li class="footer__social">
+      @@include('link/index.html', {
+      "href": "#",
+      "text": "Mail"
+      })
+    </li>
+    <li class="footer__social">
+      @@include('link/index.html', {
+      "href": "#",
+      "text": "GitHub"
+      })
+    </li>
+    <li class="footer__social">
+      @@include('link/index.html', {
+      "href": "#",
+      "text": "Phone"
+      })
+    </li>
+  </ul>
+  <p class="footer__text">Design by <a class="footer__text-link" href="#">DL Academy</a></p>
+  <p class="footer__text">Program code from Antonina</p>
 </footer>
+
+<div class="message-modal message-modal_js message-modal_hidden">
+  <form class="message">
+
+    <div class="message__large-row">
+      <div class="message__little-row">
+        <label for="form-name" class="message__label message__label_little">What is your name? *</label>
+        <input type="text" class="message__input message__input_js" id="form-name" name="name">
+      </div>
+
+      <div class="message__little-row">
+        <label for="form-subject" class="message__label message__label_little">Message subject *</label>
+        <input type="text" class="message__input" id="form-subject" name="subject">
+      </div>
+    </div>
+
+    <div class="message__large-row">
+      <div class="message__little-row">
+        <label for="form-email" class="message__label message__label_little">Your Email *</label>
+        <input type="email" class="message__input" id="form-email" name="email">
+      </div>
+
+      <div class="message__little-row">
+        <label for="form-phone" class="message__label message__label_little">Your mobile phone *</label>
+        <input type="tel" class="message__input" id="form-phone" name="phone">
+      </div>
+    </div>
+
+    <div class="message__large-row">
+      <label for="form-message" class="message__label">What do you want to discuss with me?</label>
+      <textarea class="message__input message__form-area" name="message" id="form-message"></textarea>
+    </div>
+
+    <div class="message__large-row">
+      <label class="message__checkbox-label">
+        <input class="message__checkbox" type="checkbox" name="accept" disabled>
+        Clicking on the button, you consent to the processing of your personal data.
+      </label>
+    </div>
+    @@include('button/index.html', {
+    "text": "Send"
+    })
+    <button class="message__button-close message__button-close_js">X</button>
+  </form>
+</div>

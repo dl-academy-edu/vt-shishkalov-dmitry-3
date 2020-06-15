@@ -1,12 +1,83 @@
-<header>
-  <div class="container">
-    <span class="title-block title-block_one">
-      Header
-    </span>
-    <a href="/">Главная</a>
-    <a href="/pages/catalog">Каталог</a>
-    <a href="/pages/toys">Игрушки</a>
-    <a href="/pages/homework1">Задание 1</a>
-    <a href="/pages/homework2">Задание 2</a>
-  </div>
+<header class="header container">
+  <a href="@@link" class="header__link header__link_black">Home</a>
+  <nav class="header__nav">
+    <a href="#" class="header__link">My blog</a>
+    <button class="header__link header__link_signjs">Sign in</button>
+    <button class="header__link header__link_regjs">Register</button>
+  </nav>
 </header>
+
+<div class="register-modal register-modal_js register-modal_hidden">
+  <form class="registration">
+
+    <div class="registration__large-row">
+      <label for="form-email" class="registration__label">Email *</label>
+      <input type="email" class="registration__input registration__input_js" id="form-email" name="email">
+    </div>
+
+    <div class="registration__large-row">
+      <div class="registration__little-row">
+        <label for="form-name" class="registration__label registration__label_little">Name *</label>
+        <input type="text" class="registration__input" id="form-name" name="name">
+      </div>
+
+      <div class="registration__little-row registration__little-row_second">
+        <label for="form-surname" class="registration__label registration__label_little">Surname *</label>
+        <input type="text" class="registration__input" id="form-surname" name="surname">
+      </div>
+    </div>
+
+    <div class="registration__large-row">
+      <div class="registration__little-row">
+        <label for="form-password" class="registration__label registration__label_little">Password *</label>
+        <input type="password" class="registration__input" id="form-password" name="password">
+      </div>
+
+      <div class="registration__little-row">
+        <label for="form-rpassword" class="registration__label registration__label_little">Repeat password *</label>
+        <input type="password" class="registration__input" id="form-rpassword" name="rpassword">
+      </div>
+    </div>
+
+    <div class="registration__large-row">
+      <div class="registration__little-row">
+        <label for="form-location" class="registration__label registration__label_little">Location *</label>
+        <input type="text" class="registration__input" id="form-location" name="location">
+      </div>
+
+      <div class="registration__little-row">
+        <label for="form-age" class="registration__label registration__label_little">Age *</label>
+        <input type="number" class="registration__input" id="form-age" name="age">
+      </div>
+    </div>
+
+    <div class="registration__large-row">
+      <label class="registration__checkbox-label">
+        <input class="registration__checkbox" type="checkbox" name="accept" disabled>
+        Clicking on the button, you consent to the processing of your personal data.
+      </label>
+    </div>
+    @@include('button/index.html', {
+    "text": "Sign up"
+    })
+    <button class="registration__button-close registration__button-close_js">X</button>
+  </form>
+</div>
+
+<div class="sign-modal sign-modal_js sign-modal_hidden">
+  <form class="sign">
+    <div class="sign__row">
+      <label for="form-email" class="sign__label">Email *</label>
+      <input type="email" class="sign__input sign__input_js" id="form-email" name="email">
+    </div>
+    <div class="sign__row">
+      <label for="form-password" class="sign__label">Password *</label>
+      <input type="password" class="sign__input sign__input_js" id="form-password" name="password">
+    </div>
+    @@include('button/index.html', {
+    "class": "sign__button",
+    "text": "Log in"
+    })
+    <button class="sign__button-close sign__button-close_js">X</button>
+  </form>
+</div>

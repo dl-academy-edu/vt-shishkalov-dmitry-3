@@ -1,28 +1,66 @@
+
+body {
+  font-family: Gilroy;
+}
+
+a { 
+  text-decoration: none; 
+}
+
+html { 
+  box-sizing: border-box; 
+}
+*,
+*::before, 
+*::after { 
+  box-sizing: inherit; 
+}
+
+img { 
+  max-width: 100%; 
+}
+
+.hidden{
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  padding:0 !important;
+  border:0 !important;
+  height: 1px !important; 
+  width: 1px !important; 
+  overflow: hidden;
+}
+
+.container{
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1040px;
+  padding: 0 20px;
+}
+
 // Подключение компонентов
+@import "./button/button";
+@import "./link/link";
 @import "./header/header";
 @import "./footer/footer";
 
-body {
-  font-family: Oswald, sans-serif;
+@font-face{
+  font-family: 'Gilroy';
+  src: url('../fonts/Gilroy-Regular.eot');
+  src: url('../fonts/Gilroy-Regular.eot?iefix') format('eot'),
+  url('../fonts/Gilroy-Regular.woff') format('woff'),
+  url('../fontsGilroy-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
-.container {
-  width: 100%;
-  max-width: 1180px;
-  margin: 0 auto;
-  padding-right: 20px;
-  padding-left: 20px;
+@font-face{
+  font-family: 'Gilroy';
+  src: url('../fonts/Gilroy-Bold.eot');
+  src: url('../fonts/Gilroy-Bold.eot?iefix') format('eot'),
+  url('../fonts/Gilroy-Bold.woff') format('woff'),
+  url('../fontsGilroy-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
 }
 
-.title-block {
-  margin: 0 0 20px 0;
-
-  &_one {
-    font-size: 30px;
-    text-transform: uppercase;
-  }
-  &_two {
-    font-size: 25px;
-    max-width: 500px;
-  }
-}
