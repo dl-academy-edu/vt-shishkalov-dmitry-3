@@ -7,20 +7,20 @@
   cursor: pointer;
   &_black{
     background-color: #070707;
-  }
-  &__text{
-    display: inline-block;
-    font-family: Gilroy;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 22px;
-    text-align: center;
-    color: #070707;
-    padding: 10px 19px;
-    &_white{
-      color: #FFFFFF;
-      padding: 10px 29px;
+    .button__text{
+      display: inline-block;
+      font-family: Gilroy;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 22px;
+      text-align: center;
+      color: #070707;
+      padding: 10px 19px;
+      &_white{
+        color: #FFFFFF;
+        padding: 10px 29px;
+      }
     }
   }
 }

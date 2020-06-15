@@ -7,24 +7,6 @@
   </nav>
 </header>
 
-<div class="sign-modal sign-modal_js sign-modal_hidden">
-  <form class="sign">
-    <div class="sign__row">
-      <label for="form-email" class="sign__label">Email *</label>
-      <input type="email" class="sign__input sign__input_js" id="form-email" name="email">
-    </div>
-    <div class="sign__row">
-      <label for="form-password" class="sign__label">Password *</label>
-      <input type="password" class="sign__input sign__input_js" id="form-password" name="password">
-    </div>
-    @@include('button/index.html', {
-    "class": "sign__button",
-    "text": "Log in"
-    })
-    <button class="sign__button-close sign__button-closes_js">X</button>
-  </form>
-</div>
-
 <div class="register-modal register-modal_js register-modal_hidden">
   <form class="registration">
 
@@ -79,5 +61,23 @@
     "text": "Sign up"
     })
     <button class="registration__button-close registration__button-close_js">X</button>
+  </form>
+</div>
+
+<div class="sign-modal sign-modal_js sign-modal_hidden">
+  <form class="sign">
+    <div class="sign__row">
+      <label for="form-email" class="sign__label">Email *</label>
+      <input type="email" class="sign__input sign__input_js" id="form-email" name="email">
+    </div>
+    <div class="sign__row">
+      <label for="form-password" class="sign__label">Password *</label>
+      <input type="password" class="sign__input sign__input_js" id="form-password" name="password">
+    </div>
+    @@include('button/index.html', {
+    "class": "sign__button",
+    "text": "Log in"
+    })
+    <button class="sign__button-close sign__button-close_js">X</button>
   </form>
 </div>
