@@ -96,3 +96,152 @@
   })
 })();
 
+//валидация форм
+
+function getValuesForm(form) {
+  let body = {};
+  const inputs = form.querySelectorAll("input");
+  const textareas = form.querySelectorAll("textarea");
+  for (let i = 0; i < inputs.length; i++) {
+    const input = inputs[i];
+    switch (input.type) {
+      case "radio":
+        if (input.checked) {
+          body[input.name] = input.value;
+        }
+        break;
+
+      case "checkbox":
+        if (!body[input.name]) {
+          body[input.name] = [];
+        }
+        if (input.checked) {
+          const inputLenght = body[input.name].length;
+          body[input.name][inputLenght] = input.value;
+        }
+        break;
+
+      case "file":
+        body[input.name] = input.files;
+        break;
+
+      default:
+        body[input.name] = input.value;
+        break;
+    }
+  }
+  return body
+}
+
+function mailCheck(email) {
+  return email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
+}
+
+function phoneCheck(phone) {
+  return phone.match(/^(\s*)?(\+)?([-_():=+]?\d[- _():=+]?){10,14}(\s*)?$/);
+}
+
+function errorMessageCreater(input, text) {
+  let message = document.createElement("div");
+  message.classList.add("invalid-text");
+  message.innerText = text;
+  input.insertAdjacentElement("afterend", message);
+  input.addEventListener("input", function handlerInput(event) {
+    message.remove();
+    input.removeEventListener("input", handlerInput);
+  })
+}
+
+function setInvalidInput(input) {
+  input.classList.add("invalid-input");
+  input.addEventListener("input", function handlerInput(event) {
+    input.classList.remove("invalid-input");
+    input.removeEventListener("input", handlerInput);
+  })
+}
+
+function setFormErrors(form, errors) {
+  const inputs = form.querySelectorAll("input");
+  for (let i = 0; i < inputs.length; i++) {
+    const input = inputs[i];
+    if (errors[input.name]) {
+      setInvalidInput(input);
+      errorMessageCreater(input, errors[input.name]);
+    }
+  }
+}
+
+(function () {
+  let formSignIn = document.forms["sign-in"];
+  formSignIn.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const form = event.target;
+    const values = getValuesForm(form);
+    let errors = {}
+    if (!mailCheck(values.email)) {
+      errors.email = "Please enter a valid email address (your entry is not in the format somebody@example.com)";
+    }
+    if (values.password.length < 1) {
+      errors.password = "This field is required";
+    }
+    setFormErrors(form, errors);
+  })
+
+  let formRegistration = document.forms["register"];
+  formRegistration.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const form = event.target;
+    const values = getValuesForm(form);
+    let errors = {}
+    if (!mailCheck(values.email)) {
+      errors.email = "Please enter a valid email address (your entry is not in the format somebody@example.com)";
+    }
+    if (values.name.length < 1) {
+      errors.name = "This field is required";
+    }
+    if (values.surname.length < 1) {
+      errors.surname = "This field is required";
+    }
+    if (values.password.length < 1) {
+      errors.password = "This field is required";
+    }
+    if (values.rpassword.length < 1) {
+      errors.rpassword = "This field is required";
+    }
+    if (values.location.length < 1) {
+      errors.location = "This field is required";
+    }
+    if (values.age.length < 1) {
+      errors.age = "This field is required";
+    }
+    if (!(values.accept.checked)) {
+      errors.accept = "Clicking on the button!";
+    }
+    setFormErrors(form, errors);
+  })
+
+  let formSendMessage = document.forms["send-message"];
+  formSendMessage.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const form = event.target;
+    const values = getValuesForm(form);
+    console.log(values);
+    let errors = {}
+    if (values.name.length < 1) {
+      errors.name = "This field is required";
+    }
+    if (values.subject.length < 1) {
+      errors.subject = "This field is required";
+    }
+    if (!mailCheck(values.email)) {
+      errors.email = "Please enter a valid email address (your entry is not in the format somebody@example.com)";
+    }
+    if (!phoneCheck(values.phone)) {
+      errors.phone = "Please enter a valid phone";
+    }
+    if (!(values.accept.checked)) {
+      errors.accept = "Clicking on the button!";
+    }
+    setFormErrors(form, errors);
+  })
+})();

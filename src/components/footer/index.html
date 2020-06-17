@@ -50,7 +50,7 @@
 </footer>
 
 <div class="message-modal message-modal_js message-modal_hidden">
-  <form class="message">
+  <form class="message" name="send-message">
 
     <div class="message__large-row">
       <div class="message__little-row">
@@ -83,13 +83,13 @@
 
     <div class="message__large-row">
       <label class="message__checkbox-label">
-        <input class="message__checkbox" type="checkbox" name="accept" disabled>
+        <input class="message__checkbox" type="checkbox" name="accept" value="yes">
         Clicking on the button, you consent to the processing of your personal data.
       </label>
     </div>
     @@include('button/index.html', {
     "text": "Send"
     })
-    <button class="message__button-close message__button-close_js">X</button>
+    <button class="message__button-close message__button-close_js" type="button">X</button>
   </form>
 </div>
