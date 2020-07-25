@@ -9,10 +9,14 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="/common.css">
   <link rel="stylesheet" href="/static/fonts/gilroy.css" />
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 </head>
 
 <body>
-  @@include('header/index.html')
+  @@include('header/index.html', {
+  "link": "#",
+  "blog-link": "../pages/blog/index.html"
+  })
 
   <main>
     <section class="developer container">
@@ -21,9 +25,26 @@
         <p class="developer__information">Future front-end developer
           23 years old, Tolyatti</p>
       </div>
-      <img class="developer__img" src="/static/images/portrait.jpg" alt="my portrait">
+
+      <div class="developer__slider">
+        <div class="developer__slider-wrapper">
+          <div class="developer__slide">
+            <img class="developer__img" src="/static/images/portrait.jpg" alt="my portrait">
+          </div>
+          <div class="developer__slide">
+            <img class="developer__img" src="/static/images/slider-2.jpg" alt="my portrait">
+          </div>
+          <div class="developer__slide">
+            <img class="developer__img" src="/static/images/slider-3.jpg" alt="my portrait">
+          </div>
+          <div class="developer__slide">
+            <img class="developer__img" src="/static/images/slider-4.jpg" alt="my portrait">
+          </div>
+        </div>
+      </div>
+
       <div class="developer__pagination">
-        <button class="developer__button">
+        <button class="developer__button developer__button_back" disabled>
           <svg class="left" width="15" height="24" viewBox="0 0 15 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="12.5791" y="23.6992" width="16.5512" height="3" rx="1.5" transform="rotate(-135 12.5791 23.6992)"
               fill="#070707" />
@@ -31,13 +52,8 @@
               fill="#070707" />
           </svg>
         </button>
-        <div class="developer__pages">
-          <button class="developer__page developer__page_active"></button>
-          <button class="developer__page"></button>
-          <button class="developer__page"></button>
-          <button class="developer__page"></button>
-        </div>
-        <button class="developer__button">
+        <div class="developer__pages"></div>
+        <button class="developer__button developer__button_next">
           <svg class="right" width="15" height="24" viewBox="0 0 15 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="2.4209" y="0.300842" width="16.5512" height="3" rx="1.5" transform="rotate(45 2.4209 0.300842)"
               fill="#070707" />
@@ -114,7 +130,39 @@
 
     <section class="portfolio">
       <h2 class="title portfolio__title">Portfolio</h2>
-      <div class="portfolio__slider container">
+      <div class="swiper-container">
+
+        <div class="swiper-wrapper">
+
+          <div class="swiper-slide">
+            <img src="/static/images/portfolio.jpg" alt="site DLK" class="portfolio__img">
+          </div>
+          <div class="swiper-slide">
+            <img src="/static/images/portfolio-2.jpg" alt="site DLK" class="portfolio__img">
+          </div>
+          <div class="swiper-slide"><img src="/static/images/portfolio-3.jpg" alt="site DLK" class="portfolio__img">
+          </div>
+          <div class="swiper-slide"><img src="/static/images/portfolio-4.jpg" alt="site DLK" class="portfolio__img">
+          </div>
+          <div class="swiper-slide"><img src="/static/images/portfolio-5.jpg" alt="site DLK" class="portfolio__img">
+          </div>
+          <div class="swiper-slide"><img src="/static/images/portfolio-6.jpg" alt="site DLK" class="portfolio__img">
+          </div>
+        </div>
+
+        <div class="swiper-button-prev">
+        </div>
+        <div class="swiper-button-next">
+        </div>
+
+        <div class="portfolio__footer">
+          <a href="#" class="portfolio__link">Learning site for DL Academy courses</a>
+          <p class="portfolio__description">A simple multi-page static site. The design layout was in Figma. HTML and
+            CSS were
+            used. The site is responsive and cross-browser, but without adding interactivity via JavaScript.</p>
+        </div>
+      </div>
+      <!-- <div class="portfolio__slider container">
         <img src="/static/images/portfolio.jpg" alt="site DLK" class="portfolio__img">
         <button class="portfolio__button"><img src="/static/images/left.svg" alt=""></button>
         <button class="portfolio__button portfolio__button_right"><img src="/static/images/right.svg" alt=""></button>
@@ -124,7 +172,7 @@
             CSS were
             used. The site is responsive and cross-browser, but without adding interactivity via JavaScript.</p>
         </div>
-      </div>
+      </div> -->
     </section>
     <button class="button-scroll button-scroll_js button-scroll_hidden">
       <svg width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -136,6 +184,7 @@
     </button>
   </main>
   @@include('footer/index.html')
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script src="scripts.js"></script>
 </body>
 

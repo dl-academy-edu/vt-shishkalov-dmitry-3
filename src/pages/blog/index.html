@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Main</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/common.css">
+  <link rel="stylesheet" href="/static/fonts/gilroy.css" />
+</head>
+
+<body>
+  @@include('header/index.html', {
+  "link": "/index.html",
+  "blog-link": "#"
+  })
+
+  <main>
+    <section class="filter container">
+      <h1 class="title">My blog</h1>
+      <form class="filter__form" name="filter">
+        <fieldset class="filter__fieldset filter__fieldset_color">
+          <legend class="filter__form-label">Tags</legend>
+          <div class="filter__tags tags_js">
+            <label class="filter__tag-label">
+              <input class="filter__checkbox hidden" type="checkbox" name="tag" value="very-blue" checked>
+              <span class="filter__indicator"></span>
+            </label>
+            <label class="filter__tag-label">
+              <input class="filter__checkbox hidden" type="checkbox" name="tag" value="dark-blue">
+              <span class="filter__indicator filter__indicator_dark-blue"></span>
+            </label>
+            <label class="filter__tag-label">
+              <input class="filter__checkbox hidden" type="checkbox" name="tag" value="yellow">
+              <span class="filter__indicator filter__indicator_yellow"></span>
+            </label>
+            <label class="filter__tag-label">
+              <input class="filter__checkbox hidden" type="checkbox" name="tag" value="blue">
+              <span class="filter__indicator filter__indicator_blue"></span>
+            </label>
+            <label class="filter__tag-label">
+              <input class="filter__checkbox hidden" type="checkbox" name="tag" value="orange">
+              <span class="filter__indicator filter__indicator_orange"></span>
+            </label>
+            <label class="filter__tag-label">
+              <input class="filter__checkbox hidden" type="checkbox" name="tag" value="pink" checked>
+              <span class="filter__indicator filter__indicator_pink"></span>
+            </label>
+            <label class="filter__tag-label">
+              <input class="filter__checkbox hidden" type="checkbox" name="tag" value="purple">
+              <span class="filter__indicator filter__indicator_purple"></span>
+            </label>
+            <label class="filter__tag-label">
+              <input class="filter__checkbox hidden" type="checkbox" name="tag" value="green">
+              <span class="filter__indicator filter__indicator_green"></span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="filter__fieldset filter__fieldset_views">
+          <legend class="filter__form-label">Views</legend>
+          <label class="filter__label">
+            <input class="filter__radio hidden" type="radio" name="views" value="small">
+            <span class="filter__radio-indicator"></span>
+            100-500
+          </label>
+          <label class="filter__label">
+            <input class="filter__radio hidden" type="radio" name="views" value="medium" checked>
+            <span class="filter__radio-indicator"></span>
+            500-1000
+          </label>
+          <label class="filter__label">
+            <input class="filter__radio hidden" type="radio" name="views" value="large">
+            <span class="filter__radio-indicator"></span>
+            1000-2000
+          </label>
+        </fieldset>
+
+        <fieldset class="filter__fieldset filter__fieldset_comments">
+          <legend class="filter__form-label">Comments</legend>
+          <label class="filter__label">
+            <input class="filter__checkbox hidden" type="checkbox" name="comments" value="0" checked>
+            <span class="filter__indicator filter__indicator_black"></span>
+            0
+          </label>
+          <label class="filter__label">
+            <input class="filter__checkbox hidden" type="checkbox" name="comments" value="0-1">
+            <span class="filter__indicator filter__indicator_black"></span>
+            0-1
+          </label>
+          <label class="filter__label">
+            <input class="filter__checkbox hidden" type="checkbox" name="comments" value="1-50">
+            <span class="filter__indicator filter__indicator_black"></span>
+            1-50
+          </label>
+        </fieldset>
+
+        <fieldset class="filter__fieldset filter__fieldset_show">
+          <legend class="filter__form-label">How show?</legend>
+          <label class="filter__label">
+            <input class="filter__radio hidden" type="radio" name="show" value="5" checked>
+            <span class="filter__radio-indicator"></span>
+            show 5
+          </label>
+          <label class="filter__label">
+            <input class="filter__radio hidden" type="radio" name="show" value="10">
+            <span class="filter__radio-indicator"></span>
+            show 10
+          </label>
+        </fieldset>
+
+        <fieldset class="filter__fieldset filter__fieldset_sort">
+          <legend class="filter__form-label">Sort by</legend>
+          <label class="filter__label">
+            <input class="filter__radio hidden" type="radio" name="sort" value="date" checked>
+            <span class="filter__radio-indicator"></span>
+            date
+          </label>
+          <label class="filter__label">
+            <input class="filter__radio hidden" type="radio" name="sort" value="title">
+            <span class="filter__radio-indicator"></span>
+            title
+          </label>
+          <label class="filter__label">
+            <input class="filter__radio hidden" type="radio" name="sort" value="views">
+            <span class="filter__radio-indicator"></span>
+            views
+          </label>
+        </fieldset>
+
+        <div class="filter__reset">
+          <span class="filter__text">reset form</span>
+          @@include('button/index.html', {
+          "text": "Reset"
+          })
+        </div>
+        <div class="filter__search">
+          <textarea name="text" class="filter__area"></textarea>
+          @@include('button/index.html', {
+          "text": "Search"
+          })
+        </div>
+      </form>
+    </section>
+
+    <section class="container">
+      <div class="cards_js"></div>
+      <div class="pagination">
+        <button class="pagination__button pagination__button_back">
+          <svg class="left" width="15" height="24" viewBox="0 0 15 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="12.5791" y="23.6992" width="16.5512" height="3" rx="1.5" transform="rotate(-135 12.5791 23.6992)"
+              fill="#070707" />
+            <rect x="14.7002" y="2.41992" width="16.5512" height="3" rx="1.5" transform="rotate(135 14.7002 2.41992)"
+              fill="#070707" />
+          </svg>
+        </button>
+        <div class="pagination__pages">
+          <a href="?page=1" class="pagination__page pagination__page_active page_js">1</a>
+          <a href="?page=2" class="pagination__page page_js">2</a>
+          <a href="?page=3" class="pagination__page page_js">3</a>
+          <a href="?page=4" class="pagination__page page_js">4</a>
+          <a href="?page=5" class="pagination__page page_js">5</a>
+          <a href="?page=6" class="pagination__page page_js">6</a>
+          <a href="?page=7" class="pagination__page page_js">7</a>
+          <a href="?page=8" class="pagination__page page_js">8</a>
+        </div>
+        <button class="pagination__button pagination__button_next">
+          <svg class="right" width="15" height="24" viewBox="0 0 15 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2.4209" y="0.300842" width="16.5512" height="3" rx="1.5" transform="rotate(45 2.4209 0.300842)"
+              fill="#070707" />
+            <rect x="0.299805" y="21.5801" width="16.5512" height="3" rx="1.5" transform="rotate(-45 0.299805 21.5801)"
+              fill="#070707" />
+          </svg>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  @@include('footer/index.html')
+  <script src="scripts.js"></script>
+</body>
+
+</html>

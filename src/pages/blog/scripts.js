@@ -1,22 +1,3 @@
-//Кнопка для возврата наверх
-
-(function scroll() {
-
-  let button = document.querySelector(".button-scroll_js");
-
-  window.addEventListener('scroll', function (event) {
-    if (window.pageYOffset >= 1500) {
-      button.classList.remove("button-scroll_hidden");
-    }
-    if (window.pageYOffset < 1500) {
-      button.classList.add("button-scroll_hidden");
-    }
-  });
-
-  button.addEventListener('click', function (event) {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-})();
 
 //форма регистрации
 
@@ -228,7 +209,6 @@ function setFormErrors(form, errors) {
     event.preventDefault();
     const form = event.target;
     const values = getValuesForm(form);
-    console.log(values);
     let errors = {}
     if (values.name.length < 1) {
       errors.name = "This field is required";
@@ -249,85 +229,174 @@ function setFormErrors(form, errors) {
   })
 })();
 
-//слайдер
+//фильтр
 
-let slider = document.querySelector(".developer__slider");
-let wrapper = document.querySelector(".developer__slider-wrapper");
-let slides = document.querySelectorAll(".developer__slide");
-let pages = document.querySelector(".developer__pages");
-let buttonNext = document.querySelector(".developer__button_next");
-let buttonBack = document.querySelector(".developer__button_back");
+function setValuesForm(form, values) {
+  const inputs = form.querySelectorAll("input");
+  const textareas = form.querySelectorAll("textarea");
+  for (let i = 0; i < inputs.length; i++) {
+    const input = inputs[i];
+    switch (input.type) {
+      case "radio":
+        if (values[input.name] && values[input.name] === input.value) {
+          input.checked = true;
+        }
+        break;
 
-let sliderWidth = +getComputedStyle(slider).width.split("px")[0];
-let numberSlide = wrapper.childElementCount - 1;
-let activeSlide = 0;
-let points = [];
+      case "checkbox":
+        if (values[input.name]) {
+          for (let j = 0; j < values[input.name].length; j++) {
+            if (values[input.name][j] === input.value) {
+              input.checked = true;
+            }
+          }
+        }
+        break;
 
-function addWidthSlides() {
-  for (let i = 0; i < slides.length; i++) {
-    slides[i].style.width = `${sliderWidth}px`;
-  }
-}
-addWidthSlides();
-
-function setActiveSlide(index) {
-  wrapper.style.transition = "margin-left .5s";
-  points[activeSlide].classList.remove("developer__point_active");
-  points[index].classList.add("developer__point_active");
-  if (activeSlide - index > 0) {
-    buttonNext.removeAttribute("disabled");
-  }
-  if (activeSlide - index < 0) {
-    buttonBack.removeAttribute("disabled");
-  }
-  if (index === 0) {
-    buttonBack.setAttribute("disabled", "disabled");
-  }
-  if (index === numberSlide) {
-    buttonNext.setAttribute("disabled", "disabled");
-  }
-  wrapper.style.marginLeft = `${-sliderWidth * index}px`;
-  activeSlide = index;
-  localStorage.setItem("activeSlide", activeSlide);
-}
-
-buttonNext.addEventListener("click", function () {
-  setActiveSlide(activeSlide + 1);
-})
-
-buttonBack.addEventListener("click", function () {
-  setActiveSlide(activeSlide - 1);
-})
-
-function addPoint() {
-  for (let i = 0; i < slides.length; i++) {
-    let point = document.createElement("button");
-    point.classList.add("developer__point");
-    if (i === activeSlide) {
-      point.classList.add("developer__point_active");
+      default:
+        input.value = values[input.name];
+        break;
     }
-    point.addEventListener("click", function () {
-      setActiveSlide(i);
-    })
-    points.push(point);
-    pages.insertAdjacentElement("beforeend", point);
+  }
+  for (let textarea of textareas) {
+    textarea.value = values[textarea.name].replace("undefined", " ");
   }
 }
-addPoint();
 
-if (localStorage.getItem("activeSlide")) {
-  setActiveSlide(+localStorage.getItem("activeSlide"));
+function getValuesURL() {
+  let parametrs = {};
+  if (location.search) {
+    let pArray = location.search.substring(1).split("&");
+    for (let i = 0; i < pArray.length; i++) {
+      let pNameValues = pArray[i].split("=");
+      let name = pNameValues[0];
+      let value = pNameValues[1];
+      if (parametrs[name]) {
+        if (typeof parametrs[name] === "string") {
+          parametrs[name] = [parametrs[name], value];
+        } else {
+          parametrs[name].push(value);
+        }
+      } else {
+        parametrs[name] = value;
+      }
+    }
+  }
+  return parametrs;
 }
 
-//swiper
+function setValuesURL(values) {
+  let parametrs = [];
+  let names = Object.keys(values);
+  for (let i = 0; i < names.length; i++) {
+    if ((typeof values[names[i]]) === "string") {
+      parametrs.push(names[i] + "=" + values[names[i]]);
+    } else {
+      for (let j = 0; j < values[names[i]].length; j++) {
+        parametrs.push(names[i] + "=" + values[names[i]][j]);
+      }
+    }
+  }
+  window.history.replaceState({}, document.title, "?" + parametrs.join("&"));
+}
 
-let mySwiper = new Swiper('.swiper-container', {
-  // Optional parameters
-  direction: 'horizontal',
+let formFilter = document.forms["filter"];
 
-  // Navigation arrows
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
+setValuesForm(filter, getValuesURL());
+
+formFilter.addEventListener("submit", function (event) {
+  event.preventDefault();
+  setValuesURL(getValuesForm(event.target));
+})
+
+let pages = document.querySelectorAll(".page_js");
+for (let i = 0; i < pages.length; i++) {
+  pages[i].addEventListener("click", function (event) {
+    event.preventDefault();
+    let value = getValuesForm(filter);
+    value.page = i + 1 + '';
+    setValuesURL(value);
+    allValues = value;
+    // pages.classList.remove("pagination__page_active");
+    pages[i].classList.add("pagination__page_active");
+    getCards(allValues);
+  })
+}
+
+
+//сервер
+
+const server = "http://academy.directlinedev.com";
+let tags = document.querySelector(".tags_js");
+let cards = document.querySelector(".cards_js");
+let allValues = getValuesURL();
+
+function call(method, path, fn) {
+  let xhr = new XMLHttpRequest();
+  xhr.open(method, server + path);
+  xhr.send();
+  xhr.onload = function () {
+    fn(xhr);
+  }
+}
+
+function createTag(tag) {
+  return `
+    <label class="filter__tag-label">
+              <input class="filter__checkbox hidden" type="checkbox" name="tag" value="green">
+              <span style="color: ${tag.color}" class="filter__indicator"></span>
+    </label>
+    `
+}
+
+function createCard(card) {
+  return `
+  <div class="card">
+  <img src="${server}${card.desktopPhotoUrl}" alt="${card.title}" class="card__img">
+  <div class="card__info">
+    <div class="card__tags">
+      <span class="card__tag card__tag_orange"></span>
+      <span class="card__tag"></span>
+    </div>
+    <div class="card__filter">
+      <span class="card__date card__text">${card.date}</span>
+      <span class="card__views card__text">${card.views} views</span>
+      <span class="card__comments card__text">${card.commentsCount} comments</span>
+    </div>
+    <h2 class="card__title">${card.title}</h2>
+    <p class="card__paper">${card.text}</p>
+    <a href="#" class="card__link">Go to this post</a>
+  </div>
+</div>
+    `
+}
+
+function getCards(allValues) {
+  let page = allValues.page ? +allValues.page : 1;
+  let offset = (page - 1) * 5;
+  call("GET", `/api/posts?limit=${5}&offset=${offset}`, function (result) {
+    let response = JSON.parse(result.response);
+    if (response.success) {
+      console.log(JSON.parse(result.response))
+      for (let i = 0; i < response.data.length; i++) {
+        let card = createCard(response.data[i]);
+        cards.insertAdjacentHTML("beforeend", card);
+      }
+    } else {
+      alert("Ошибка сервера");
+    }
+  })
+}
+
+call("GET", "/api/tags", function (result) {
+  let response = JSON.parse(result.response);
+  if (response.success) {
+    console.log(JSON.parse(result.response))
+    for (let i = 0; i < response.data.length; i++) {
+      let tag = createTag(response.data[i]);
+      tags.insertAdjacentHTML("beforeend", tag);
+    }
+  } else {
+    alert("Ошибка сервера");
   }
 })
