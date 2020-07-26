@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Main</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+  <link rel="stylesheet" href="/common.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/static/fonts/gilroy.css" />
+</head>
+
+<body>
+  <header class="header container">
+    <a href="/index.html" class="header__link">Home</a>
+    <nav class="header__nav">
+      <a href="../blog/index.html" class="header__link">My blog</a>
+      <a href="#" class="header__link header__link_black">My profile</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="profile container">
+      <div class="profile__visual">
+        <h1 class="profile__title">My profile</h1>
+        <img src="/static/images/photo.png" alt="photo" class="profile__photo">
+      </div>
+      <div class="profile__information">
+        <div class="profile__info">
+          <span class="profile__name">Name:</span>
+          <span class="profile__value">Ksenia</span>
+        </div>
+        <div class="profile__info">
+          <span class="profile__name">Surname:</span>
+          <span class="profile__value">Larioshkina</span>
+        </div>
+        <div class="profile__info">
+          <span class="profile__name">Email:</span>
+          <span class="profile__value">larioshkina@gmail.com</span>
+        </div>
+        <div class="profile__info">
+          <span class="profile__name">Password:</span>
+          <span class="profile__value">****************</span>
+        </div>
+        <div class="profile__info">
+          <span class="profile__name">Location:</span>
+          <span class="profile__value">Moscow</span>
+        </div>
+        <div class="profile__info">
+          <span class="profile__name">Age:</span>
+          <span class="profile__value">17</span>
+        </div>
+        @@include('button/index.html', {
+        "text": "Change password",
+        "class": "profile__button change-password_js"
+        })
+        @@include('button/index.html', {
+        "text": "Change other data",
+        "class": "profile__button data-button_js"
+        })
+        @@include('button/index.html', {
+        "text": "Delete account",
+        "class": "profile__button"
+        })
+      </div>
+    </section>
+
+    <div class="password-modal password-modal_js password-modal_hidden">
+      <form class="password-form" name="password">
+        <div class="password-form__row">
+          <label for="passwod-form-old" class="password-form__label">Old password *</label>
+          <input type="password" class="password-form__input password-form__input_js" id="passwod-form-old" name="old"
+            placeholder="**********">
+        </div>
+        <div class="password-form__row">
+          <label for="passwod-form-new" class="password-form__label">New password *</label>
+          <input type="password" class="password-form__input" id="passwod-form-new" name="new"
+            placeholder="****************">
+        </div>
+        <div class="password-form__row">
+          <label for="passwod-form-repeat" class="password-form__label">Repeat new password *</label>
+          <input type="password" class="password-form__input" id="passwod-form-repeat" name="repeat"
+            placeholder="****************">
+        </div>
+        @@include('button/index.html', {
+        "class": "password-form__button",
+        "text": "Change password"
+        })
+        <button class="password-form__button-close password-form__button-close_js" type="button">X</button>
+      </form>
+    </div>
+
+    <div class="data-modal data-modal_js data-modal_hidden">
+      <form class="data" name="data">
+
+        <div class="data__large-row">
+          <label for="form-email" class="data__label">Email</label>
+          <input type="text" class="data__input data__input_js" id="form-email" name="email"
+            placeholder="larioshkina@gmail.com">
+        </div>
+
+        <div class="data__large-row">
+          <div class="data__little-row">
+            <label for="form-name" class="data__label data__label_little">Name</label>
+            <input type="text" class="data__input" id="form-name" name="name" placeholder="Ksenia">
+          </div>
+
+          <div class="data__little-row data__little-row_second">
+            <label for="form-surname" class="data__label data__label_little">Surname</label>
+            <input type="text" class="data__input" id="form-surname" name="surname" placeholder="Larioshkina">
+          </div>
+        </div>
+
+        <div class="data__large-row">
+          <div class="data__little-row">
+            <label for="form-location" class="data__label data__label_little">Location</label>
+            <input type="text" class="data__input" id="form-location" name="location" placeholder="Moscow">
+          </div>
+
+          <div class="data__little-row data__little-row_second">
+            <label for="form-age" class="data__label data__label_little">Age</label>
+            <input type="text" class="data__input" id="form-age" name="age" placeholder="17">
+          </div>
+        </div>
+
+        <div class="data__large-row">
+          <div class="data__little-row">
+            <label for="form-picture" class="data__label data__label_little">Profile picture</label>
+            <input type="text" class="data__input" id="form-picture" name="picture" placeholder="file-name.png">
+          </div>
+        </div>
+
+        @@include('button/index.html', {
+        "class": "data__button",
+        "text": "Submit changes"
+        })
+        <button class="data__button-close data__button-close_js" type="button">X</button>
+      </form>
+    </div>
+  </main>
+
+  <script src="scripts.js"></script>
+</body>
+
+</html>

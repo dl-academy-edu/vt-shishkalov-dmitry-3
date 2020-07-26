@@ -40,7 +40,7 @@
     </li>
     <li class="footer__social">
       @@include('link/index.html', {
-      "href": "#",
+      "href": "/pages/profile/index.html",
       "text": "Phone"
       })
     </li>
@@ -50,12 +50,12 @@
 </footer>
 
 <div class="message-modal message-modal_js message-modal_hidden">
-  <form class="message">
+  <form class="message" name="send-message">
 
     <div class="message__large-row">
       <div class="message__little-row">
-        <label for="form-name" class="message__label message__label_little">What is your name? *</label>
-        <input type="text" class="message__input message__input_js" id="form-name" name="name">
+        <label for="message-form-name" class="message__label message__label_little">What is your name? *</label>
+        <input type="text" class="message__input message__input_js" id="message-form-name" name="name">
       </div>
 
       <div class="message__little-row">
@@ -66,8 +66,8 @@
 
     <div class="message__large-row">
       <div class="message__little-row">
-        <label for="form-email" class="message__label message__label_little">Your Email *</label>
-        <input type="email" class="message__input" id="form-email" name="email">
+        <label for="message-form-email" class="message__label message__label_little">Your Email *</label>
+        <input type="email" class="message__input" id="message-form-email" name="email">
       </div>
 
       <div class="message__little-row">
@@ -83,13 +83,13 @@
 
     <div class="message__large-row">
       <label class="message__checkbox-label">
-        <input class="message__checkbox" type="checkbox" name="accept" disabled>
+        <input class="message__checkbox" type="checkbox" name="accept" value="yes">
         Clicking on the button, you consent to the processing of your personal data.
       </label>
     </div>
     @@include('button/index.html', {
     "text": "Send"
     })
-    <button class="message__button-close message__button-close_js">X</button>
+    <button class="message__button-close message__button-close_js" type="button">X</button>
   </form>
 </div>

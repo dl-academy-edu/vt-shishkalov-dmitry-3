@@ -1,0 +1,362 @@
+.title{
+  margin: 40px 0;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 47px;
+  line-height: 57px;
+  color: #070707;
+}
+
+.filter{
+  position: relative;
+  &__form{
+    display: flex;
+    flex-wrap: wrap;
+    &-label{
+      font-family: Gilroy;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 16px;
+      color: #070707;
+      margin-bottom: 10px;
+    }
+  }
+
+  &__fieldset{
+    width: 12.5%;
+    border: none;
+    padding: 0;
+    &_views{
+      width: 13.1%;
+      display: flex;
+      flex-direction: column;
+      margin-left: 6.5%;
+      margin-right: 7%;
+    }
+    &_comments{
+      width: 7.4%;
+      margin-right: 10.7%;
+    }
+    &_show{
+      width: 10.2%;
+      margin-right: 7.6%;
+    }
+    &_sort{
+      width: 8.2%;
+      margin-right: 5.7%;
+    }
+  }
+
+  &__tags{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  &__tag-label{
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    &:hover{
+      text-decoration-line: underline;
+      cursor: pointer;  
+    }
+  }
+
+  &__indicator{
+    position: relative;
+    display: flex;
+    border: 2.5px solid #2176FF;
+    box-sizing: border-box;
+    border-radius: 5px;
+    &::before{
+      content: ' ';
+      margin-left: 2px;
+      margin-top: 2px;
+      width: 18px;
+      height: 18px;
+      background: url('/static/images/checked.svg') no-repeat;
+      opacity: 0;
+      transition: opacity .4s;
+    }
+    &_dark-blue{
+      border: 2.5px solid #33A1FD;
+      &::before{
+        background: url('/static/images/checked-2.svg') no-repeat;
+      }
+    }
+    &_yellow{
+      border: 2.5px solid #FDCA40;
+      &::before{
+        background: url('/static/images/checked-3.svg') no-repeat;
+      }
+    }
+    &_blue{
+      border: 2.5px solid #57E2E5;
+      &::before{
+        background: url('/static/images/checked-4.svg') no-repeat;
+      }
+    }
+    &_orange{
+      border: 2.5px solid #F79824;
+      &::before{
+        background: url('/static/images/checked-5.svg') no-repeat;
+      }
+    }
+    &_pink{
+      border: 2.5px solid #E08DAC;
+      &::before{
+        background: url('/static/images/checked-6.svg') no-repeat;
+      }
+    }
+    &_purple{
+      border: 2.5px solid #6A7FDB;
+      &::before{
+        background: url('/static/images/checked-7.svg') no-repeat;
+      }
+    }
+    &_green{
+      border: 2.5px solid #45CB85;
+      &::before{
+        background: url('/static/images/checked-8.svg') no-repeat;
+      }
+    }
+    &_black{
+      border: 2.5px solid #070707;
+      margin-right: 12px;
+      &::before{
+        background: url('/static/images/checked-9.svg') no-repeat;
+      }
+    }
+  }
+
+  &__checkbox:checked + &__indicator::before{
+    opacity: 1;
+  }
+
+  &__label{
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+
+  &__radio-indicator{
+    display: flex;
+    border: 2.5px solid #070707;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    margin-right: 12px;
+    &::before{
+      content: ' ';
+      margin: auto;
+      width: 12px;
+      height: 12px;
+      background: #070707;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity .2s;
+    }
+  }
+
+  &__radio:checked + &__radio-indicator::before{
+    opacity: 1;
+  }
+
+  &__reset{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__text{
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #E5E5E5;
+    margin-top: 19px;
+    margin-bottom: 5px;
+  }
+
+  &__search{
+    margin-top: 35px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__area{
+    padding-top: 10px;
+    padding-left: 10px;
+    width: 84.3%;
+    height: 50px;
+    border: 2.5px solid #E5E5E5;
+    box-sizing: border-box;
+    resize: none;
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    transition: border .4s;
+    &:hover{
+      border: 2.5px solid #828282;
+    }
+  }
+}
+
+.card{
+  margin-top: 42px;
+  display: flex;
+  position: relative;
+  &::before{
+    content: ' ';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #E5E5E5;
+  }
+
+  &__info{
+    padding: 20px;
+  }
+
+  &__tags{
+    display: flex;
+  }
+
+  &__tag{
+    display: block;
+    width: 30px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: #6A7FDB;
+    margin-left: 5px;
+    &_orange{
+      background-color: #F79824;
+      margin-left: 0;
+    }
+  }
+
+  &__filter{
+    margin-top: 10px;
+  }
+
+  &__text{
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #828282;
+    padding-right: 10px;
+  }
+
+  &__title{
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 29px;
+    color: #070707;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+
+  &__paper{
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    color: #070707;
+  }
+
+  &__link{
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+    color: #070707;
+    border-bottom: 1.5px dashed #070707;
+  }
+}
+
+.pagination{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 60px;
+  height: 42px;
+  &__button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 42px;
+    height: 42px;
+    border: 2.5px solid #070707;
+    box-sizing: border-box;
+    border-radius: 21px;
+    background-color: #fff;
+    &:hover{
+      cursor: pointer;
+      opacity: .6;
+    }
+    &:disabled{
+      opacity: .3;
+    }
+  }
+
+  &__pages{
+    display: flex;
+  }
+
+  &__page{
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+    color: #E5E5E5;
+    padding-left: 10px;
+    &_active{
+      color: black;
+    }
+  }
+
+  &__point{
+    transition: background-color .5s;
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+    color: #E5E5E5;
+    &_active{
+      background-color: #000000;
+    }
+    &:hover{
+      cursor: pointer;
+    }
+  }
+}
+
+footer{
+  background-color: #F6F6F6;
+}
